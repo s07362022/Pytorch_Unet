@@ -45,7 +45,7 @@ val_loader = DataLoader(val_dataset, batch_size=8, shuffle=False)
 test_loader = DataLoader(test_dataset, batch_size=8, shuffle=False)
 
 # 建立模型
-model = smp.Unet(encoder_name="resnet34", encoder_weights="imagenet", in_channels=3, classes=2)
+model = smp.Unet(encoder_name="resnet50", encoder_weights="imagenet", in_channels=3, classes=2)
 
 # 損失函數和優化器
 criterion = smp.utils.losses.DiceLoss()
