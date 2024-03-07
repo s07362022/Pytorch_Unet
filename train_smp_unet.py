@@ -36,9 +36,9 @@ transform = transforms.Compose([
 ])
 
 # DataLoader
-train_dataset = CustomDataset('data/train/images', 'data/train/masks', transform=transform)
-val_dataset = CustomDataset('data/val/images', 'data/val/masks', transform=transform)
-test_dataset = CustomDataset('data/test/images', 'data/test/masks', transform=transform)
+train_dataset = CustomDataset(r'F:\nuck\data\ki67\ki67\ex1\train_ex1_patch', r'F:\nuck\data\ki67\ki67\ex1\train_ex1_label', transform=transform)
+val_dataset = CustomDataset(r'F:\nuck\data\ki67\ki67\ex1\val_ex1_patch', r'F:\nuck\data\ki67\ki67\ex1\val_ex1_label', transform=transform)
+test_dataset = CustomDataset(r'F:\nuck\data\ki67\ki67\ex1\test_ex1_patch', r'F:\nuck\data\ki67\ki67\ex1\test_ex1_label', transform=transform)
 
 train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=8, shuffle=False)
@@ -136,7 +136,7 @@ def predict(model, loader, save_dir="predicted_masks"):
 
 # 主程式（示例）
 if __name__ == "__main__":
-
+    best_weights_path = 'best_model_weights.pth'
     if os.path.exists(best_weights_path):
         # 匯入已有的權重
         model.load_state_dict(torch.load(best_weights_path))
@@ -150,5 +150,5 @@ if __name__ == "__main__":
     # 逕行測試與預測
     test_MIoU = evaluate_model(model, test_loader)
     print(f"test MIoU: {test_MIoU}")
-    predict(model, test_loader, save_dir="predicted_masks"):
+    predict(model, test_loader, save_dir="predicted_masks")
     print("Finsh All Training and Testing")
